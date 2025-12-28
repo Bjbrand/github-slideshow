@@ -10,7 +10,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Disc3 className="w-8 h-8 text-[#d946ef]" />
-            <span className="text-2xl font-bold tracking-tight">SONIC RECORDS</span>
+            <span className="text-2xl font-bold tracking-tight">BjBrands Studios</span>
           </div>
           <div className="flex items-center gap-4">
             <Link to="/login">
@@ -132,7 +132,7 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="border-t border-white/5 py-8 px-6">
         <div className="max-w-7xl mx-auto text-center text-[#a1a1aa] text-sm">
-          <p>© 2025 Sonic Records. All rights reserved.</p>
+          <p>© 2025 BjBrands Studios. All rights reserved.</p>
         </div>
       </footer>
     </div>
