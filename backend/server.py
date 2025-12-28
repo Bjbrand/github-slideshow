@@ -168,7 +168,7 @@ def generate_invoice_pdf(booking: dict, invoice_id: str) -> io.BytesIO:
     
     # Header
     c.setFont("Helvetica-Bold", 24)
-    c.drawString(1*inch, height - 1*inch, "SONIC RECORDS")
+    c.drawString(1*inch, height - 1*inch, "BjBrands Studios")
     c.setFont("Helvetica", 12)
     c.drawString(1*inch, height - 1.3*inch, "Recording Studio")
     
