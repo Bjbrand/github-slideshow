@@ -1,0 +1,167 @@
+{
+  "identity": {
+    "persona": "E1: The Anti-AI Designer",
+    "mission": "Create a 'Sonic Noir' aesthetic that merges high-fidelity audio equipment visuals with modern SaaS functionality. Reject generic 'Spotify clones'.",
+    "principles": [
+      "Fusion: Analog Tactility (Knobs/Faders) x Digital Precision (Data/Grids)",
+      "Emotion: The feeling of a late-night recording session—focused, intimate, electric",
+      "Contrast: Deepest blacks vs. piercing neon accents",
+      "Negative Space: Let the data breathe, like silence between tracks"
+    ]
+  },
+  "typography": {
+    "fonts": {
+      "heading": {
+        "family": "Syne",
+        "fallback": "sans-serif",
+        "weights": ["700", "800"],
+        "usage": "Hero titles, Section headers, Impact statements",
+        "import": "@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');"
+      },
+      "body": {
+        "family": "Manrope",
+        "fallback": "sans-serif",
+        "weights": ["400", "500", "600"],
+        "usage": "UI elements, Dashboard data, Long form text",
+        "import": "@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200..800&display=swap');"
+      },
+      "mono": {
+        "family": "JetBrains Mono",
+        "fallback": "monospace",
+        "weights": ["400"],
+        "usage": "Timestamps, IP addresses, Contract IDs, Audio file metadata",
+        "import": "@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400&display=swap');"
+      }
+    },
+    "rules": [
+      "Headings > 32px must use tracking-tight (-0.02em)",
+      "Overlines must be uppercase, tracking-widest (0.2em), and text-xs",
+      "Never use Inter for headings"
+    ]
+  },
+  "colors": {
+    "palette": {
+      "mode": "dark",
+      "background": {
+        "default": "#0a0a0a",
+        "paper": "#121212",
+        "subtle": "#171717"
+      },
+      "primary": {
+        "main": "#d946ef",
+        "hover": "#c026d3",
+        "foreground": "#ffffff",
+        "description": "Electric Fuchsia - Use for primary CTAs, active states, and brand moments"
+      },
+      "secondary": {
+        "main": "#3b82f6",
+        "foreground": "#ffffff",
+        "description": "Studio Blue - Use for admin actions, information, and trust indicators"
+      },
+      "accent": {
+        "neon_green": "#00ff94",
+        "recording_red": "#ef4444",
+        "description": "Use Green for success/money, Red for 'Recording'/Danger/Delete"
+      },
+      "text": {
+        "primary": "#ffffff",
+        "secondary": "#a1a1aa",
+        "muted": "#52525b"
+      },
+      "border": {
+        "default": "#27272a",
+        "active": "#3f3f46"
+      }
+    },
+    "gradients": {
+      "hero_glow": "radial-gradient(circle at 50% 50%, rgba(217, 70, 239, 0.15) 0%, rgba(10, 10, 10, 0) 70%)",
+      "glass_surface": "linear-gradient(180deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%)"
+    }
+  },
+  "layout": {
+    "spacing_scale": "Generous (2x standard). Use p-8, p-12 for containers.",
+    "grids": {
+      "marketing": {
+        "name": "The Tetris Grid",
+        "structure": "grid-cols-1 md:grid-cols-12 gap-8",
+        "rules": "Asymmetrical spans. Hero takes 8 cols, supporting takes 4. Never fill 100% perfectly."
+      },
+      "dashboard": {
+        "name": "The Control Room Grid",
+        "structure": "grid-cols-1 md:grid-cols-4 gap-4",
+        "rules": "Dense, data-heavy. Widgets stretch to fill height (h-full). No jagged bottoms."
+      }
+    },
+    "containers": {
+      "glass_card": "bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl rounded-xl",
+      "solid_card": "bg-[#121212] border border-white/5 rounded-xl"
+    }
+  },
+  "components": {
+    "buttons": {
+      "primary": "bg-primary text-primary-foreground hover:bg-primary/90 shadow-[0_0_20px_rgba(217,70,239,0.3)] transition-all duration-300 rounded-full px-8",
+      "secondary": "bg-secondary/10 text-secondary hover:bg-secondary/20 border border-secondary/20 rounded-full px-6",
+      "ghost": "hover:bg-white/5 text-muted-foreground hover:text-white rounded-lg"
+    },
+    "inputs": {
+      "style": "bg-black/20 border-white/10 focus:border-primary/50 focus:ring-1 focus:ring-primary/50 rounded-lg h-12 text-white placeholder:text-white/20",
+      "label": "text-xs uppercase tracking-wider text-muted-foreground mb-2 block"
+    },
+    "cards": {
+      "dashboard_widget": "bg-[#121212] border border-white/5 hover:border-white/10 transition-colors p-6 rounded-xl flex flex-col justify-between"
+    },
+    "navigation": {
+      "sidebar": "bg-[#0a0a0a] border-r border-white/5 w-64 fixed h-full z-50",
+      "navbar": "bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5 sticky top-0 z-40"
+    }
+  },
+  "assets": {
+    "images": {
+      "hero_background": {
+        "url": "https://images.unsplash.com/photo-1763771757355-d2a395b5f8ea?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHwxfHxyZWNvcmRpbmclMjBzdHVkaW8lMjBpbnRlcmlvciUyMG5lb24lMjBsaWdodGluZ3xlbnwwfHx8fDE3NjY4OTYyNTh8MA&ixlib=rb-4.1.0&q=85",
+        "alt": "Neon lit recording studio interior",
+        "usage": "Landing page hero background with heavy overlay"
+      },
+      "studio_vibe": {
+        "url": "https://images.unsplash.com/photo-1675292310383-0f4ef53fa3ab?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NjZ8MHwxfHNlYXJjaHwzfHxyZWNvcmRpbmclMjBzdHVkaW8lMjBpbnRlcmlvciUyMG5lb24lMjBsaWdodGluZ3xlbnwwfHx8fDE3NjY4OTYyNTh8MA&ixlib=rb-4.1.0&q=85",
+        "alt": "Wide shot of studio control room",
+        "usage": "About section or 'Our Studio' feature"
+      },
+      "mixing_console": {
+        "url": "https://images.unsplash.com/photo-1726731770351-6c23298bd0e0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODF8MHwxfHNlYXJjaHwxfHxzb3VuZCUyMGVuZ2luZWVyJTIwbWl4aW5nJTIwY29uc29sZSUyMGNsb3NlJTIwdXB8ZW58MHx8fHwxNzY2ODk2MjU5fDA&ixlib=rb-4.1.0&q=85",
+        "alt": "Close up of mixing console faders",
+        "usage": "Service detail page or background texture"
+      },
+      "artist_recording": {
+        "url": "https://images.unsplash.com/photo-1703353312021-a1965f5a7ddd?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Njd8MHwxfHNlYXJjaHwzfHxtdXNpY2lhbiUyMHNpbmdpbmclMjBtaWNyb3Bob25lJTIwZGFyayUyMG1vb2R5fGVufDB8fHx8MTc2Njg5NjI2MXww&ixlib=rb-4.1.0&q=85",
+        "alt": "Microphone with dramatic lighting",
+        "usage": "Booking page or 'For Artists' section"
+      }
+    },
+    "icons": {
+      "library": "lucide-react",
+      "style": "Stroke width 1.5px, size 20px or 24px. Use 'Mic', 'Music', 'Waveform', 'Disc', 'Headphones' heavily."
+    }
+  },
+  "visual_enhancers": {
+    "glassmorphism": "Use backdrop-blur-xl with a 1px white/10 border to create 'physical' glass layers.",
+    "noise_texture": "Add a subtle noise texture overlay (opacity 0.03) to the entire app to reduce digital flatness.",
+    "glow_effects": "Use colored drop-shadows (shadow-primary/20) on primary buttons to simulate LED glow."
+  },
+  "universal_guidelines": {
+    "anti_slop": [
+      "NO gradients on text unless it's a massive headline.",
+      "NO default Shadcn cards without customization (remove bg, add border).",
+      "NO generic 'Lorem Ipsum' - use music industry terminology (e.g., 'Mix_v3_Final.wav', 'Mastering Session')."
+    ],
+    "accessibility": [
+      "Ensure text contrast > 4.5:1 on dark backgrounds.",
+      "Interactive elements must have a visible focus ring (ring-2 ring-primary).",
+      "All images must have alt text."
+    ],
+    "testing": [
+      "All interactive elements must have data-testid attributes (e.g., 'booking-submit-btn')."
+    ]
+  },
+  "instructions_to_main_agent": "You are building a high-end, dark-mode recording studio platform. Think 'Spotify for Artists' meets 'Linear'. Use the provided image URLs for the landing page. For the dashboard, focus on data density and clarity using the 'Control Room' grid. Use the 'Syne' font for all major headings to give it that artistic edge. Implement the 'Sonic Noir' theme immediately by setting the dark mode class and background colors in index.css."
+}
