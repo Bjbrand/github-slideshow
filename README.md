@@ -1,4 +1,4 @@
-# 🎵 Sonic Records - Recording Studio Management Platform
+# 🎵 BjBrands Studios - Recording Studio Management Platform
 
 A comprehensive business management platform for recording studios featuring client portal, booking system, contract management, project tracking, and file sharing.
 
