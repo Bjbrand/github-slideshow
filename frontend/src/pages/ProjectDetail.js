@@ -138,7 +138,7 @@ export default function ProjectDetail() {
             </Button>
             <div className="flex items-center gap-2">
               <Disc3 className="w-8 h-8 text-[#d946ef]" />
-              <span className="text-2xl font-bold text-white">SONIC RECORDS</span>
+              <span className="text-2xl font-bold text-white">BjBrands Studios</span>
             </div>
           </div>
           <Button

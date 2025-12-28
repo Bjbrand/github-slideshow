@@ -89,7 +89,7 @@ export default function ClientDashboard() {
         <div className="flex items-center justify-between mb-8">
           <div className="flex items-center gap-2">
             <Disc3 className="w-8 h-8 text-[#d946ef]" />
-            <span className="text-2xl font-bold text-white">SONIC RECORDS</span>
+            <span className="text-2xl font-bold text-white">BjBrands Studios</span>
           </div>
           <div className="flex items-center gap-4">
             <span className="text-[#a1a1aa]">Welcome, {user?.name}</span>
