@@ -31,7 +31,11 @@ function App() {
         setUser(res.data);
         setLoading(false);
       })
-      .catch(() => {
+      .catch((error) => {
+        if (error.response?.status === 401) {
+          const { toast } = require('sonner');
+          toast.error('Your session has expired. Please login again.');
+        }
         localStorage.removeItem('token');
         setToken(null);
         setLoading(false);
@@ -39,6 +43,25 @@ function App() {
     } else {
       setLoading(false);
     }
+  }, [token]);
+
+  // Setup axios interceptor for token expiration
+  useEffect(() => {
+    const interceptor = axios.interceptors.response.use(
+      (response) => response,
+      (error) => {
+        if (error.response?.status === 401 && token) {
+          const { toast } = require('sonner');
+          toast.error('Your session has expired. Please login again.');
+          logout();
+        }
+        return Promise.reject(error);
+      }
+    );
+
+    return () => {
+      axios.interceptors.response.eject(interceptor);
+    };
   }, [token]);
 
   const login = (userData, userToken) => {
