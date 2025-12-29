@@ -121,7 +121,7 @@ export default function LandingPage() {
               Join hundreds of artists who trust us with their sound. Book your first session today.
             </p>
             <Link to="/register">
-              <Button className="bg-[#d946ef] hover:bg-[#c026d3] text-white rounded-full px-10 h-14 text-lg glow-primary" data-testid="cta-book-now-btn">
+              <Button className="bg-[#003366] hover:bg-[#004080] text-white rounded-full px-10 h-14 text-lg glow-primary" data-testid="cta-book-now-btn">
                 Book Now
               </Button>
             </Link>
