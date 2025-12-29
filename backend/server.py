@@ -57,6 +57,21 @@ class UserLogin(BaseModel):
     email: EmailStr
     password: str
 
+class ForgotPasswordRequest(BaseModel):
+    email: EmailStr
+
+class VerifyOTPRequest(BaseModel):
+    email: EmailStr
+    otp: str
+
+class ResetPasswordRequest(BaseModel):
+    email: EmailStr
+    otp: str
+    new_password: str
+
+class UserPreferences(BaseModel):
+    time_format: str = "12hr"  # "12hr" or "24hr"
+
 class User(BaseModel):
     model_config = ConfigDict(extra="ignore")
     id: str
