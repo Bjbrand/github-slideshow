@@ -406,6 +406,7 @@ async def approve_payment(booking_id: str, admin: dict = Depends(require_admin))
     
     # Create project
     project_id = str(uuid.uuid4())
+    deadline_date = (datetime.now(timezone.utc) + timedelta(days=booking.get('project_duration_days', 7))).isoformat()
     project_doc = {
         "id": project_id,
         "booking_id": booking_id,
@@ -413,7 +414,9 @@ async def approve_payment(booking_id: str, admin: dict = Depends(require_admin))
         "client_name": booking['client_name'],
         "service_type": booking['service_type'],
         "status": "pending",
-        "deadline": booking['date'],
+        "progress_percentage": 0,
+        "deadline": deadline_date,
+        "deadline_reminder_sent": False,
         "created_at": datetime.now(timezone.utc).isoformat(),
         "updated_at": datetime.now(timezone.utc).isoformat()
     }
