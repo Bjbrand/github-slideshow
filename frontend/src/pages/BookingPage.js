@@ -202,10 +202,30 @@ export default function BookingPage() {
                 required
                 value={formData.project_duration_days}
                 onChange={(e) => setFormData({...formData, project_duration_days: parseInt(e.target.value)})}
-                className="bg-black/20 border-white/10 focus:border-[#d946ef]/50 h-12 text-white"
+                className="bg-black/20 border-white/10 focus:border-[#003366]/50 h-12 text-white"
                 data-testid="booking-project-duration-input"
               />
               <p className="text-xs text-[#52525b] mt-1">Expected days for project completion</p>
+            </div>
+
+            <div>
+              <Label className="text-xs uppercase tracking-wider text-[#a1a1aa] mb-2 block">Payment Percentage</Label>
+              <Select
+                value={formData.payment_percentage.toString()}
+                onValueChange={(value) => setFormData({...formData, payment_percentage: parseInt(value)})}
+                required
+              >
+                <SelectTrigger className="bg-black/20 border-white/10 h-12 text-white" data-testid="booking-payment-percentage-select">
+                  <SelectValue placeholder="Select payment percentage" />
+                </SelectTrigger>
+                <SelectContent className="bg-[#121212] border-white/10">
+                  <SelectItem value="70">70% - TZS {formData.service_type && Math.round(getServicePrice() * 0.7).toLocaleString()}</SelectItem>
+                  <SelectItem value="80">80% - TZS {formData.service_type && Math.round(getServicePrice() * 0.8).toLocaleString()}</SelectItem>
+                  <SelectItem value="90">90% - TZS {formData.service_type && Math.round(getServicePrice() * 0.9).toLocaleString()}</SelectItem>
+                  <SelectItem value="100">100% - TZS {formData.service_type && getServicePrice().toLocaleString()}</SelectItem>
+                </SelectContent>
+              </Select>
+              <p className="text-xs text-[#52525b] mt-1">Choose payment percentage (minimum 70%)</p>
             </div>
 
             <div>
