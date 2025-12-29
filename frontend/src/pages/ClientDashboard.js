@@ -68,7 +68,7 @@ export default function ClientDashboard() {
   const getPaymentStatusColor = (status) => {
     const colors = {
       pending: 'text-[#ef4444] bg-[#ef4444]/10',
-      verification_pending: 'text-[#d946ef] bg-[#d946ef]/10',
+      verification_pending: 'text-[#003366] bg-[#003366]/10',
       confirmed: 'text-[#00ff94] bg-[#00ff94]/10'
     };
     return colors[status] || colors.pending;
