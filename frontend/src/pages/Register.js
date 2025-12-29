@@ -40,8 +40,8 @@ export default function Register() {
     <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center p-6">
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link to="/" className="inline-flex items-center gap-2 mb-6">
-            <Disc3 className="w-8 h-8 text-[#d946ef]" />
+          <Link to="/" className="inline-flex items-center gap-3 mb-6">
+            <img src="/logo-white.png" alt="BjBrands Studios Logo" className="h-12 w-12 object-contain" />
             <span className="text-2xl font-bold text-white">BjBrands Studios</span>
           </Link>
           <h1 className="text-3xl font-bold text-white mb-2">Create Account</h1>
