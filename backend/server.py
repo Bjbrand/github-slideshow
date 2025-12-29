@@ -72,6 +72,7 @@ class BookingCreate(BaseModel):
     date: str
     time: str
     duration: int
+    project_duration_days: int = 7
     notes: Optional[str] = None
 
 class Booking(BaseModel):
