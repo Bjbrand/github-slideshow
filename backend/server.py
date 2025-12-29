@@ -162,6 +162,18 @@ async def require_admin(user: dict = Depends(get_current_user)):
     return user
 
 # PDF Generation
+def get_service_pricing(service_type: str) -> dict:
+    """Get pricing information for a service"""
+    pricing = {
+        "Recording": {"price": 50000, "discount_available": True, "max_discount": 0.20},
+        "Mixing": {"price": 70000, "discount_available": False, "max_discount": 0},
+        "Mastering": {"price": 30000, "discount_available": False, "max_discount": 0},
+        "A Cappella": {"price": 40000, "discount_available": False, "max_discount": 0},
+        "Video Recording": {"price": 150000, "discount_available": True, "max_discount": 0.15},
+        "Video Editing": {"price": 100000, "discount_available": True, "max_discount": 0.15}
+    }
+    return pricing.get(service_type, {"price": 50000, "discount_available": False, "max_discount": 0})
+
 def generate_invoice_pdf(booking: dict, invoice_id: str) -> io.BytesIO:
     buffer = io.BytesIO()
     c = canvas.Canvas(buffer, pagesize=letter)
@@ -189,18 +201,43 @@ def generate_invoice_pdf(booking: dict, invoice_id: str) -> io.BytesIO:
     c.drawString(1*inch, y, f"Session Date: {booking['date']}")
     y -= 0.3*inch
     c.drawString(1*inch, y, f"Time: {booking['time']}")
-    y -= 0.3*inch
-    c.drawString(1*inch, y, f"Duration: {booking['duration']} hours")
     
-    # Amount (simplified - you can add pricing logic)
+    # Pricing
+    pricing = get_service_pricing(booking['service_type'])
+    base_price = pricing['price']
+    payment_percentage = booking.get('payment_percentage', 100) / 100
+    amount_due = int(base_price * payment_percentage)
+    
     y -= 0.6*inch
+    c.setFont("Helvetica", 11)
+    c.drawString(1*inch, y, f"Service Price: TZS {base_price:,}")
+    y -= 0.3*inch
+    c.drawString(1*inch, y, f"Payment Percentage: {booking.get('payment_percentage', 100)}%")
+    
+    y -= 0.5*inch
     c.setFont("Helvetica-Bold", 14)
-    amount = booking['duration'] * 100  # $100 per hour example
-    c.drawString(1*inch, y, f"Total Amount: ${amount}")
+    c.drawString(1*inch, y, f"Amount Due: TZS {amount_due:,}")
+    
+    # Payment Methods
+    y -= 0.8*inch
+    c.setFont("Helvetica-Bold", 12)
+    c.drawString(1*inch, y, "Payment Methods:")
+    y -= 0.3*inch
+    c.setFont("Helvetica", 10)
+    c.drawString(1*inch, y, "Airtel Money: +255672991100")
+    y -= 0.25*inch
+    c.drawString(1*inch, y, "M-Pesa: +255766919083")
+    y -= 0.25*inch
+    c.drawString(1*inch, y, "Bank Transfer:")
+    y -= 0.2*inch
+    c.drawString(1.3*inch, y, "Account Number: 0152618979700")
+    y -= 0.2*inch
+    c.drawString(1.3*inch, y, "Account Name: Bwanga Josiah Tayali")
     
     # Footer
     c.setFont("Helvetica", 9)
-    c.drawString(1*inch, 1*inch, "Payment due within 7 days. Bank details will be sent via email.")
+    c.drawString(1*inch, 1.2*inch, "Payment must be completed before session date.")
+    c.drawString(1*inch, 1*inch, "Master files and videos available for download after full payment.")
     
     c.save()
     buffer.seek(0)
