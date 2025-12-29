@@ -72,7 +72,7 @@ export default function ContractPage() {
             </p>
             <Button
               onClick={() => navigate('/book')}
-              className="bg-[#d946ef] hover:bg-[#c026d3] text-white rounded-full px-8 h-12 glow-primary"
+              className="bg-[#003366] hover:bg-[#004080] text-white rounded-full px-8 h-12 glow-primary"
               data-testid="contract-proceed-btn"
             >
               Book a Session
@@ -133,7 +133,7 @@ export default function ContractPage() {
             <Button
               onClick={handleAccept}
               disabled={accepting}
-              className="bg-[#d946ef] hover:bg-[#c026d3] text-white rounded-full px-8 h-12 glow-primary"
+              className="bg-[#003366] hover:bg-[#004080] text-white rounded-full px-8 h-12 glow-primary"
               data-testid="contract-accept-btn"
             >
               {accepting ? 'Accepting...' : 'I Agree - Accept Contract'}
