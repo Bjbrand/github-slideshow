@@ -23,15 +23,32 @@ export default function BookingPage() {
     notes: ''
   });
   const [loading, setLoading] = useState(false);
+  const [settings, setSettings] = useState(null);
 
-  const servicePricing = {
-    "Recording": { price: 50000, discount: true },
-    "Mixing": { price: 70000, discount: false },
-    "Mastering": { price: 30000, discount: false },
-    "A Cappella": { price: 40000, discount: false },
-    "Video Recording": { price: 200000, discount: false },
-    "Video Editing": { price: 200000, discount: false }
+  useEffect(() => {
+    fetchSettings();
+  }, []);
+
+  const fetchSettings = async () => {
+    try {
+      const response = await axios.get(`${API}/settings/public`);
+      setSettings(response.data);
+    } catch (error) {
+      console.error('Failed to load settings');
+    }
   };
+
+  const servicePricing = settings?.pricing || {
+    "Recording": 50000,
+    "Mixing": 70000,
+    "Mastering": 30000,
+    "A Cappella": 40000,
+    "Video Recording": 200000,
+    "Video Editing": 200000
+  };
+
+  const hasDiscount = settings?.seasonal_campaign?.active || false;
+  const discountPercentage = settings?.seasonal_campaign?.discount_percentage || 0;
 
   const getServicePrice = () => {
     const service = servicePricing[formData.service_type];
