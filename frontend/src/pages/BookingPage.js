@@ -130,7 +130,7 @@ export default function BookingPage() {
                   min={new Date().toISOString().split('T')[0]}
                   value={formData.date}
                   onChange={(e) => setFormData({...formData, date: e.target.value})}
-                  className="bg-black/20 border-white/10 focus:border-[#d946ef]/50 h-12 text-white"
+                  className="bg-black/20 border-white/10 focus:border-[#003366]/50 h-12 text-white"
                   data-testid="booking-date-input"
                 />
               </div>
@@ -146,7 +146,7 @@ export default function BookingPage() {
                   required
                   value={formData.time}
                   onChange={(e) => setFormData({...formData, time: e.target.value})}
-                  className="bg-black/20 border-white/10 focus:border-[#d946ef]/50 h-12 text-white"
+                  className="bg-black/20 border-white/10 focus:border-[#003366]/50 h-12 text-white"
                   data-testid="booking-time-input"
                 />
               </div>
