@@ -190,7 +190,7 @@ export default function BookingPage() {
             <Button
               type="submit"
               disabled={loading || !formData.service_type}
-              className="w-full bg-[#d946ef] hover:bg-[#c026d3] text-white rounded-full h-12 text-lg glow-primary"
+              className="w-full bg-[#003366] hover:bg-[#004080] text-white rounded-full h-12 text-lg glow-primary"
               data-testid="booking-submit-btn"
             >
               {loading ? 'Creating Booking...' : 'Generate Invoice & Book'}
