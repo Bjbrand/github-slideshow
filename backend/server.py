@@ -168,6 +168,39 @@ async def require_admin(user: dict = Depends(get_current_user)):
     return user
 
 # PDF Generation
+async def get_service_pricing_from_db(service_type: str) -> dict:
+    """Get pricing information from database settings"""
+    settings = await db.settings.find_one({"type": "global"}, {"_id": 0})
+    default_pricing = {
+        "Recording": 50000,
+        "Mixing": 70000,
+        "Mastering": 30000,
+        "A Cappella": 40000,
+        "Video Recording": 200000,
+        "Video Editing": 200000
+    }
+    
+    if settings and "pricing" in settings:
+        pricing = settings["pricing"]
+    else:
+        pricing = default_pricing
+    
+    base_price = pricing.get(service_type, 50000)
+    
+    # Apply seasonal discount if active
+    discount = 0
+    if settings and settings.get("seasonal_campaign", {}).get("active"):
+        discount = settings["seasonal_campaign"].get("discount_percentage", 0) / 100
+    
+    final_price = int(base_price * (1 - discount))
+    
+    return {
+        "price": final_price,
+        "original_price": base_price,
+        "discount_percentage": int(discount * 100),
+        "has_discount": discount > 0
+    }
+
 def get_service_pricing(service_type: str) -> dict:
     """Get pricing information for a service"""
     pricing = {
