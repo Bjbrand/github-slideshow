@@ -15,6 +15,15 @@ export default function ClientDashboard() {
   const [loading, setLoading] = useState(true);
   const [uploadingPayment, setUploadingPayment] = useState(null);
 
+  const servicePricing = {
+    "Recording": { price: 50000 },
+    "Mixing": { price: 70000 },
+    "Mastering": { price: 30000 },
+    "A Cappella": { price: 40000 },
+    "Video Recording": { price: 150000 },
+    "Video Editing": { price: 100000 }
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
