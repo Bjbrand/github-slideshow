@@ -182,7 +182,7 @@ export default function ProjectDetail() {
                   <Button
                     type="button"
                     size="sm"
-                    className="bg-[#d946ef] hover:bg-[#c026d3] text-white pointer-events-none"
+                    className="bg-[#003366] hover:bg-[#004080] text-white pointer-events-none"
                     disabled={uploading}
                   >
                     <Upload className="w-4 h-4 mr-2" />
