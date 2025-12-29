@@ -266,6 +266,19 @@ export default function BookingPage() {
 
             <div className="bg-white/5 border border-white/10 rounded-lg p-4">
               <div className="space-y-2">
+                {hasDiscount && formData.service_type && (
+                  <div className="bg-[#00cc66]/10 border border-[#00cc66]/20 rounded-lg p-3 mb-3">
+                    <p className="text-[#00cc66] text-sm font-bold text-center">
+                      {settings.seasonal_campaign.banner_text || `${discountPercentage}% OFF - Special Offer!`}
+                    </p>
+                  </div>
+                )}
+                {hasDiscount && formData.service_type && (
+                  <div className="flex items-center justify-between">
+                    <span className="text-[#a1a1aa]">Original Price:</span>
+                    <span className="text-white font-medium line-through">TZS {formData.service_type && getOriginalPrice().toLocaleString()}</span>
+                  </div>
+                )}
                 <div className="flex items-center justify-between">
                   <span className="text-[#a1a1aa]">Service Price:</span>
                   <span className="text-white font-medium">TZS {formData.service_type && getServicePrice().toLocaleString()}</span>
@@ -274,9 +287,6 @@ export default function BookingPage() {
                   <span className="text-[#a1a1aa]">Payment ({formData.payment_percentage}%):</span>
                   <span className="text-2xl font-bold text-white">TZS {formData.service_type && getAmountDue().toLocaleString()}</span>
                 </div>
-                {servicePricing[formData.service_type]?.discount && (
-                  <p className="text-xs text-[#00cc66] mt-2">✓ Discount available for this service</p>
-                )}
               </div>
             </div>
 
