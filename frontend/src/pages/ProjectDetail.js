@@ -240,15 +240,28 @@ export default function ProjectDetail() {
                       <FileText className="w-5 h-5 text-[#003366]" />
                       <span className="text-white text-sm">{file.filename}</span>
                     </div>
-                    <Button
-                      onClick={() => previewFile(file.id)}
-                      size="sm"
-                      variant="ghost"
-                      className="text-[#003366] hover:text-[#003366]/80"
-                      data-testid={`preview-file-${file.id}`}
-                    >
-                      <Play className="w-4 h-4" />
-                    </Button>
+                    <div className="flex items-center gap-2">
+                      <Button
+                        onClick={() => previewFile(file.id)}
+                        size="sm"
+                        variant="ghost"
+                        className="text-[#003366] hover:text-[#003366]/80"
+                        data-testid={`preview-file-${file.id}`}
+                      >
+                        <Play className="w-4 h-4" />
+                      </Button>
+                      {canDownload() && (
+                        <Button
+                          onClick={() => downloadFile(file.id, file.filename)}
+                          size="sm"
+                          variant="ghost"
+                          className="text-[#00ff94] hover:text-[#00ff94]/80"
+                          data-testid={`download-file-${file.id}`}
+                        >
+                          <Download className="w-4 h-4" />
+                        </Button>
+                      )}
+                    </div>
                   </div>
                 ))}
               </div>
