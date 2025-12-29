@@ -1,10 +1,41 @@
 import { Link } from 'react-router-dom';
 import { Music, Mic, Headphones, Disc3 } from 'lucide-react';
 import { Button } from '../components/ui/button';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
 
 export default function LandingPage() {
+  const [settings, setSettings] = useState(null);
+
+  useEffect(() => {
+    fetchSettings();
+  }, []);
+
+  const fetchSettings = async () => {
+    try {
+      const response = await axios.get(`${BACKEND_URL}/api/settings/public`);
+      setSettings(response.data);
+    } catch (error) {
+      console.error('Failed to load settings');
+    }
+  };
+
+  const heroText = settings?.theme?.hero_text || "Create Your Sonic Masterpiece";
+  const heroSubtitle = settings?.theme?.hero_subtitle || "Book studio sessions, manage projects, and collaborate with our engineers—all in one seamless platform.";
+  const showBanner = settings?.seasonal_campaign?.active || false;
+  const bannerText = settings?.seasonal_campaign?.banner_text || "";
+
   return (
     <div className="min-h-screen bg-[#0a0a0a] text-white">
+      {/* Seasonal Banner */}
+      {showBanner && bannerText && (
+        <div className="bg-gradient-to-r from-[#003366] to-[#0066cc] py-3 text-center sticky top-0 z-50">
+          <p className="text-white font-bold text-sm md:text-base px-4">{bannerText}</p>
+        </div>
+      )}
+
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
