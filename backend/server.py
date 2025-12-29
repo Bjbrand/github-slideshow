@@ -108,6 +108,11 @@ class Project(BaseModel):
 class ProjectStatusUpdate(BaseModel):
     status: str
 
+class SettingsUpdate(BaseModel):
+    pricing: Optional[dict] = None
+    theme: Optional[dict] = None
+    seasonal_campaign: Optional[dict] = None
+
 class RevisionCreate(BaseModel):
     project_id: str
     message: str
