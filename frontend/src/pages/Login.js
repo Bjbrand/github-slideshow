@@ -55,7 +55,7 @@ export default function Login() {
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
-                className="bg-black/20 border-white/10 focus:border-[#d946ef]/50 focus:ring-1 focus:ring-[#d946ef]/50 rounded-lg h-12 text-white"
+                className="bg-black/20 border-white/10 focus:border-[#003366]/50 focus:ring-1 focus:ring-[#003366]/50 rounded-lg h-12 text-white"
                 placeholder="john@example.com"
                 data-testid="login-email-input"
               />
@@ -69,7 +69,7 @@ export default function Login() {
                 required
                 value={formData.password}
                 onChange={(e) => setFormData({...formData, password: e.target.value})}
-                className="bg-black/20 border-white/10 focus:border-[#d946ef]/50 focus:ring-1 focus:ring-[#d946ef]/50 rounded-lg h-12 text-white"
+                className="bg-black/20 border-white/10 focus:border-[#003366]/50 focus:ring-1 focus:ring-[#003366]/50 rounded-lg h-12 text-white"
                 placeholder="••••••••"
                 data-testid="login-password-input"
               />
