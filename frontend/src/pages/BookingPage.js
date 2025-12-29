@@ -19,9 +19,30 @@ export default function BookingPage() {
     time: '',
     duration: 2,
     project_duration_days: 7,
+    payment_percentage: 100,
     notes: ''
   });
   const [loading, setLoading] = useState(false);
+
+  const servicePricing = {
+    "Recording": { price: 50000, discount: true },
+    "Mixing": { price: 70000, discount: false },
+    "Mastering": { price: 30000, discount: false },
+    "A Cappella": { price: 40000, discount: false },
+    "Video Recording": { price: 150000, discount: true },
+    "Video Editing": { price: 100000, discount: true }
+  };
+
+  const getServicePrice = () => {
+    const service = servicePricing[formData.service_type];
+    if (!service) return 0;
+    return service.price;
+  };
+
+  const getAmountDue = () => {
+    const basePrice = getServicePrice();
+    return Math.round((basePrice * formData.payment_percentage) / 100);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
