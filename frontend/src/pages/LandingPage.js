@@ -85,9 +85,9 @@ export default function LandingPage() {
               <p className="text-[#a1a1aa] text-sm">Professional multi-track recording with state-of-the-art equipment.</p>
             </div>
 
-            <div className="bg-[#121212] border border-white/5 hover:border-[#d946ef]/50 p-8 rounded-xl transition-all duration-300 group" data-testid="service-mixing">
-              <div className="w-12 h-12 bg-[#3b82f6]/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-[#3b82f6]/20 transition-colors">
-                <Music className="w-6 h-6 text-[#3b82f6]" />
+            <div className="bg-[#121212] border border-white/5 hover:border-[#003366]/50 p-8 rounded-xl transition-all duration-300 group" data-testid="service-mixing">
+              <div className="w-12 h-12 bg-[#0066cc]/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-[#0066cc]/20 transition-colors">
+                <Music className="w-6 h-6 text-[#0066cc]" />
               </div>
               <h3 className="text-xl font-bold mb-2">Mixing</h3>
               <p className="text-[#a1a1aa] text-sm">Expert mixing to bring balance and clarity to your tracks.</p>
