@@ -136,8 +136,8 @@ export default function ProjectDetail() {
               <ArrowLeft className="w-4 h-4 mr-2" />
               Back
             </Button>
-            <div className="flex items-center gap-2">
-              <Disc3 className="w-8 h-8 text-[#d946ef]" />
+            <div className="flex items-center gap-3">
+              <img src="/logo-white.png" alt="BjBrands Studios Logo" className="h-10 w-10 object-contain" />
               <span className="text-2xl font-bold text-white">BjBrands Studios</span>
             </div>
           </div>
