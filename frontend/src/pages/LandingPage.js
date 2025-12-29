@@ -77,11 +77,11 @@ export default function LandingPage() {
               </span>
             </div>
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-none">
-              Create Your
-              <span className="block text-[#003366] mt-2">Sonic Masterpiece</span>
+              {heroText.split(' ').slice(0, 2).join(' ')}
+              <span className="block text-[#003366] mt-2">{heroText.split(' ').slice(2).join(' ')}</span>
             </h1>
             <p className="text-lg text-[#a1a1aa] max-w-2xl">
-              Book studio sessions, manage projects, and collaborate with our engineers—all in one seamless platform.
+              {heroSubtitle}
             </p>
             <div className="flex items-center gap-4 pt-4">
               <Link to="/register">
