@@ -96,6 +96,7 @@ function App() {
           <Route path="/book" element={user ? <BookingPage /> : <Navigate to="/login" />} />
           <Route path="/dashboard" element={user ? (user.role === 'admin' ? <AdminDashboard /> : <ClientDashboard />) : <Navigate to="/login" />} />
           <Route path="/projects/:projectId" element={user ? <ProjectDetail /> : <Navigate to="/login" />} />
+          <Route path="/preview/:fileId" element={user ? <FilePreview /> : <Navigate to="/login" />} />
         </Routes>
         <Toaster position="top-right" />
       </BrowserRouter>
