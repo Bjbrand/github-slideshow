@@ -170,8 +170,8 @@ def get_service_pricing(service_type: str) -> dict:
         "Mixing": {"price": 70000, "discount_available": False, "max_discount": 0},
         "Mastering": {"price": 30000, "discount_available": False, "max_discount": 0},
         "A Cappella": {"price": 40000, "discount_available": False, "max_discount": 0},
-        "Video Recording": {"price": 150000, "discount_available": True, "max_discount": 0.15},
-        "Video Editing": {"price": 100000, "discount_available": True, "max_discount": 0.15}
+        "Video Recording": {"price": 200000, "discount_available": False, "max_discount": 0},
+        "Video Editing": {"price": 200000, "discount_available": False, "max_discount": 0}
     }
     return pricing.get(service_type, {"price": 50000, "discount_available": False, "max_discount": 0})
 
