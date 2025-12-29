@@ -103,8 +103,8 @@ export default function AdminDashboard() {
 
         {/* Stats */}
         <div className="grid md:grid-cols-4 gap-4 mb-8">
-          <div className="bg-[#121212] border border-white/5 p-6 rounded-xl\" data-testid=\"admin-stat-clients\">
-            <Users className=\"w-8 h-8 text-[#003366] mb-2\" />
+          <div className="bg-[#121212] border border-white/5 p-6 rounded-xl" data-testid="admin-stat-clients">
+            <Users className="w-8 h-8 text-[#003366] mb-2" />
             <div className="text-[#a1a1aa] text-sm mb-1">Total Clients</div>
             <div className="text-3xl font-bold text-white">{dashboardData?.total_clients || 0}</div>
           </div>
