@@ -55,9 +55,9 @@
 }
 
 .glow-primary {
-  box-shadow: 0 0 20px rgba(217, 70, 239, 0.3);
+  box-shadow: 0 0 20px rgba(0, 51, 102, 0.4);
 }
 
 .glow-accent {
-  box-shadow: 0 0 20px rgba(0, 255, 148, 0.3);
+  box-shadow: 0 0 20px rgba(0, 102, 204, 0.4);
 }
