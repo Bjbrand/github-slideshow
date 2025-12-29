@@ -54,7 +54,7 @@ export default function LandingPage() {
             </p>
             <div className="flex items-center gap-4 pt-4">
               <Link to="/register">
-                <Button className="bg-[#d946ef] hover:bg-[#c026d3] text-white rounded-full px-8 h-12 text-base glow-primary" data-testid="hero-get-started-btn">
+                <Button className="bg-[#003366] hover:bg-[#004080] text-white rounded-full px-8 h-12 text-base glow-primary" data-testid="hero-get-started-btn">
                   Book Your Session
                 </Button>
               </Link>
