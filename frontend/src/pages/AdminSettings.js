@@ -111,7 +111,7 @@ export default function AdminSettings() {
     setSettings({
       ...settings,
       pricing: {
-        ...settings.pricing,
+        ...(settings?.pricing || {}),
         [service]: parseInt(value) || 0
       }
     });
@@ -121,7 +121,7 @@ export default function AdminSettings() {
     setSettings({
       ...settings,
       theme: {
-        ...settings.theme,
+        ...(settings?.theme || {}),
         [field]: value
       }
     });
@@ -131,13 +131,13 @@ export default function AdminSettings() {
     setSettings({
       ...settings,
       seasonal_campaign: {
-        ...settings.seasonal_campaign,
+        ...(settings?.seasonal_campaign || {}),
         [field]: value
       }
     });
   };
 
-  if (loading) {
+  if (loading || !settings) {
     return (
       <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center">
         <div className="text-white text-xl">Loading settings...</div>
