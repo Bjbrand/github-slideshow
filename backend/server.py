@@ -901,6 +901,76 @@ async def get_all_clients(admin: dict = Depends(require_admin)):
     clients = await db.users.find({"role": "client"}, {"_id": 0, "password": 0}).to_list(1000)
     return clients
 
+@api_router.post("/admin/users")
+async def create_user(user_data: UserRegister, admin: dict = Depends(require_admin)):
+    """Admin creates a new user"""
+    existing = await db.users.find_one({"email": user_data.email}, {"_id": 0})
+    if existing:
+        raise HTTPException(status_code=400, detail="Email already registered")
+    
+    user_id = str(uuid.uuid4())
+    user_doc = {
+        "id": user_id,
+        "name": user_data.name,
+        "email": user_data.email,
+        "password": hash_password(user_data.password),
+        "role": "client",
+        "phone": user_data.phone,
+        "company_name": user_data.company_name,
+        "created_at": datetime.now(timezone.utc).isoformat()
+    }
+    
+    await db.users.insert_one(user_doc)
+    return {"message": "User created successfully", "user_id": user_id}
+
+@api_router.delete("/admin/users/{user_id}")
+async def delete_user(user_id: str, admin: dict = Depends(require_admin)):
+    """Admin deletes a user and all their data"""
+    user = await db.users.find_one({"id": user_id, "role": "client"}, {"_id": 0})
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    # Delete user's bookings
+    await db.bookings.delete_many({"client_id": user_id})
+    
+    # Delete user's projects
+    projects = await db.projects.find({"client_id": user_id}, {"_id": 0}).to_list(1000)
+    for project in projects:
+        # Delete project files
+        await db.files.delete_many({"project_id": project['id']})
+        await db.revisions.delete_many({"project_id": project['id']})
+    await db.projects.delete_many({"client_id": user_id})
+    
+    # Delete contracts
+    await db.contracts.delete_many({"user_id": user_id})
+    
+    # Delete user
+    await db.users.delete_one({"id": user_id})
+    
+    return {"message": "User and all associated data deleted successfully"}
+
+@api_router.post("/users/delete-account")
+async def delete_own_account(user: dict = Depends(get_current_user)):
+    """Client deletes their own account"""
+    if user['role'] == 'admin':
+        raise HTTPException(status_code=403, detail="Admin accounts cannot be self-deleted")
+    
+    user_id = user['user_id']
+    
+    # Delete all user data (same as admin delete)
+    await db.bookings.delete_many({"client_id": user_id})
+    
+    projects = await db.projects.find({"client_id": user_id}, {"_id": 0}).to_list(1000)
+    for project in projects:
+        await db.files.delete_many({"project_id": project['id']})
+        await db.revisions.delete_many({"project_id": project['id']})
+    await db.projects.delete_many({"client_id": user_id})
+    
+    await db.contracts.delete_many({"user_id": user_id})
+    await db.users.delete_one({"id": user_id})
+    
+    return {"message": "Account deleted successfully"}
+
 @api_router.get("/admin/payment-reminders")
 async def get_payment_reminders(admin: dict = Depends(require_admin)):
     # Get bookings with pending or verification_pending payment older than 2 days
