@@ -73,6 +73,7 @@ class BookingCreate(BaseModel):
     time: str
     duration: int
     project_duration_days: int = 7
+    payment_percentage: int = 100
     notes: Optional[str] = None
 
 class Booking(BaseModel):
