@@ -58,8 +58,8 @@ export default function ClientDashboard() {
   const getStatusColor = (status) => {
     const colors = {
       pending: 'text-[#a1a1aa] bg-white/5',
-      in_progress: 'text-[#3b82f6] bg-[#3b82f6]/10',
-      revision_requested: 'text-[#d946ef] bg-[#d946ef]/10',
+      in_progress: 'text-[#0066cc] bg-[#0066cc]/10',
+      revision_requested: 'text-[#003366] bg-[#003366]/10',
       completed: 'text-[#00ff94] bg-[#00ff94]/10'
     };
     return colors[status] || colors.pending;
