@@ -179,6 +179,16 @@ export default function ProjectDetail() {
               <h1 className="text-3xl font-bold text-white mb-2">{project.service_type} Project</h1>
               <p className="text-[#a1a1aa]">Client: {project.client_name}</p>
               <p className="text-[#a1a1aa]">Deadline: {project.deadline}</p>
+              {booking && (
+                <p className="text-[#a1a1aa] mt-2">
+                  Payment: {booking.payment_percentage}% 
+                  {booking.payment_percentage < 100 && (
+                    <span className="text-[#ef4444] ml-2">
+                      (Downloads available after 100% payment)
+                    </span>
+                  )}
+                </p>
+              )}
             </div>
             <span className={`text-sm px-4 py-2 rounded-full ${getStatusColor(project.status)}`} data-testid="project-status">
               {project.status.replace('_', ' ').toUpperCase()}
