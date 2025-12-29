@@ -24,16 +24,20 @@ export default function AdminDashboard() {
 
   const fetchData = async () => {
     try {
-      const [dashRes, clientsRes, projectsRes, bookingsRes] = await Promise.all([
+      const [dashRes, clientsRes, projectsRes, bookingsRes, paymentRemindersRes, deadlineRemindersRes] = await Promise.all([
         axios.get(`${API}/admin/dashboard`, { headers: { Authorization: `Bearer ${token}` } }),
         axios.get(`${API}/admin/clients`, { headers: { Authorization: `Bearer ${token}` } }),
         axios.get(`${API}/projects`, { headers: { Authorization: `Bearer ${token}` } }),
-        axios.get(`${API}/bookings`, { headers: { Authorization: `Bearer ${token}` } })
+        axios.get(`${API}/bookings`, { headers: { Authorization: `Bearer ${token}` } }),
+        axios.get(`${API}/admin/payment-reminders`, { headers: { Authorization: `Bearer ${token}` } }),
+        axios.get(`${API}/admin/deadline-reminders`, { headers: { Authorization: `Bearer ${token}` } })
       ]);
       setDashboardData(dashRes.data);
       setClients(clientsRes.data);
       setProjects(projectsRes.data);
       setBookings(bookingsRes.data);
+      setPaymentReminders(paymentRemindersRes.data);
+      setDeadlineReminders(deadlineRemindersRes.data);
     } catch (error) {
       toast.error('Failed to load dashboard data');
     } finally {
