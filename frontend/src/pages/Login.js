@@ -85,7 +85,10 @@ export default function Login() {
             </Button>
           </form>
 
-          <div className="mt-6 text-center">
+          <div className="mt-6 space-y-3 text-center">
+            <Link to="/forgot-password" className="block text-[#003366] hover:underline text-sm">
+              Forgot Password?
+            </Link>
             <p className="text-[#a1a1aa] text-sm">
               Don't have an account?{' '}
               <Link to="/register" className="text-[#003366] hover:underline" data-testid="login-register-link">
