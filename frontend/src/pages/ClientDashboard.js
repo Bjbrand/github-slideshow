@@ -20,8 +20,8 @@ export default function ClientDashboard() {
     "Mixing": { price: 70000 },
     "Mastering": { price: 30000 },
     "A Cappella": { price: 40000 },
-    "Video Recording": { price: 150000 },
-    "Video Editing": { price: 100000 }
+    "Video Recording": { price: 200000 },
+    "Video Editing": { price: 200000 }
   };
 
   useEffect(() => {
