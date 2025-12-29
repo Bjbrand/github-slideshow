@@ -160,6 +160,59 @@ class PaymentProofUpload(BaseModel):
     booking_id: str
 
 # Auth Helper Functions
+def generate_otp() -> str:
+    """Generate 6-digit OTP"""
+    return ''.join(random.choices(string.digits, k=6))
+
+async def send_otp_email(email: str, otp: str, purpose: str = "login"):
+    """
+    Send OTP via email
+    Note: In production, integrate with SendGrid/Resend for actual email sending
+    For now, we'll store OTP in database and log it
+    """
+    logger.info(f"OTP for {email} ({purpose}): {otp}")
+    
+    # Store OTP in database with 10-minute expiration
+    await db.otps.update_one(
+        {"email": email, "purpose": purpose},
+        {
+            "$set": {
+                "otp": otp,
+                "created_at": datetime.now(timezone.utc).isoformat(),
+                "expires_at": (datetime.now(timezone.utc) + timedelta(minutes=10)).isoformat(),
+                "verified": False
+            }
+        },
+        upsert=True
+    )
+    
+    return True
+
+async def verify_otp(email: str, otp: str, purpose: str = "login") -> bool:
+    """Verify OTP"""
+    otp_doc = await db.otps.find_one({
+        "email": email,
+        "purpose": purpose,
+        "otp": otp,
+        "verified": False
+    }, {"_id": 0})
+    
+    if not otp_doc:
+        return False
+    
+    # Check expiration
+    expires_at = datetime.fromisoformat(otp_doc["expires_at"])
+    if datetime.now(timezone.utc) > expires_at:
+        return False
+    
+    # Mark as verified
+    await db.otps.update_one(
+        {"email": email, "purpose": purpose, "otp": otp},
+        {"$set": {"verified": True}}
+    )
+    
+    return True
+
 def hash_password(password: str) -> str:
     return bcrypt.hashpw(password.encode('utf-8'), bcrypt.gensalt()).decode('utf-8')
 
