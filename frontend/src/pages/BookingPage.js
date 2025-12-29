@@ -18,6 +18,7 @@ export default function BookingPage() {
     date: '',
     time: '',
     duration: 2,
+    project_duration_days: 7,
     notes: ''
   });
   const [loading, setLoading] = useState(false);
