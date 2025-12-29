@@ -14,6 +14,7 @@ export default function ProjectDetail() {
   const [project, setProject] = useState(null);
   const [files, setFiles] = useState([]);
   const [revisions, setRevisions] = useState([]);
+  const [booking, setBooking] = useState(null);
   const [revisionMessage, setRevisionMessage] = useState('');
   const [loading, setLoading] = useState(true);
   const [uploading, setUploading] = useState(false);
