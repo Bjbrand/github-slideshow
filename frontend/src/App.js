@@ -5,6 +5,8 @@ import '@/App.css';
 import LandingPage from './pages/LandingPage';
 import Register from './pages/Register';
 import Login from './pages/Login';
+import ForgotPassword from './pages/ForgotPassword';
+import TermsConditions from './pages/TermsConditions';
 import ContractPage from './pages/ContractPage';
 import BookingPage from './pages/BookingPage';
 import ClientDashboard from './pages/ClientDashboard';
