@@ -140,7 +140,7 @@ export default function ClientDashboard() {
                   <div className="flex items-center justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
-                        <Music className="w-5 h-5 text-[#d946ef]" />
+                        <Music className="w-5 h-5 text-[#003366]" />
                         <h3 className="text-lg font-bold text-white">{booking.service_type}</h3>
                         <span className={`text-xs px-3 py-1 rounded-full ${getPaymentStatusColor(booking.payment_status)}`}>
                           {booking.payment_status.replace('_', ' ').toUpperCase()}
