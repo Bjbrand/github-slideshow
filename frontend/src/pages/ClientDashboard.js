@@ -122,7 +122,7 @@ export default function ClientDashboard() {
           </div>
           <div className="bg-[#121212] border border-white/5 p-6 rounded-xl" data-testid="stat-in-progress">
             <div className="text-[#a1a1aa] text-sm mb-1">In Progress</div>
-            <div className="text-3xl font-bold text-[#3b82f6]">{projects.filter(p => p.status === 'in_progress').length}</div>
+            <div className="text-3xl font-bold text-[#0066cc]">{projects.filter(p => p.status === 'in_progress').length}</div>
           </div>
           <div className="bg-[#121212] border border-white/5 p-6 rounded-xl" data-testid="stat-completed">
             <div className="text-[#a1a1aa] text-sm mb-1">Completed</div>
