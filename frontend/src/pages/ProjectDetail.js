@@ -206,7 +206,7 @@ export default function ProjectDetail() {
                     data-testid={`file-${file.id}`}
                   >
                     <div className="flex items-center gap-3">
-                      <FileText className="w-5 h-5 text-[#d946ef]" />
+                      <FileText className="w-5 h-5 text-[#003366]" />
                       <span className="text-white text-sm">{file.filename}</span>
                     </div>
                     <Button
