@@ -109,7 +109,7 @@ export default function AdminDashboard() {
             <div className="text-3xl font-bold text-white">{dashboardData?.total_clients || 0}</div>
           </div>
           <div className="bg-[#121212] border border-white/5 p-6 rounded-xl" data-testid="admin-stat-projects">
-            <Music className="w-8 h-8 text-[#3b82f6] mb-2" />
+            <Music className="w-8 h-8 text-[#0066cc] mb-2" />
             <div className="text-[#a1a1aa] text-sm mb-1">Total Projects</div>
             <div className="text-3xl font-bold text-white">{dashboardData?.total_projects || 0}</div>
           </div>
