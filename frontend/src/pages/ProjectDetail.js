@@ -95,6 +95,35 @@ export default function ProjectDetail() {
     navigate(`/preview/${fileId}`);
   };
 
+  const downloadFile = async (fileId, filename) => {
+    try {
+      const response = await axios.get(`${API}/files/${fileId}/download`, {
+        headers: { Authorization: `Bearer ${token}` },
+        responseType: 'blob'
+      });
+      
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', filename);
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      toast.success('Download started!');
+    } catch (error) {
+      if (error.response?.status === 403) {
+        toast.error(error.response?.data?.detail || 'Download not available');
+      } else {
+        toast.error('Failed to download file');
+      }
+    }
+  };
+
+  const canDownload = () => {
+    if (user?.role === 'admin') return true;
+    return booking?.payment_percentage === 100 && booking?.payment_status === 'confirmed';
+  };
+
   const getStatusColor = (status) => {
     const colors = {
       pending: 'text-[#a1a1aa] bg-white/5',
