@@ -148,7 +148,10 @@ export default function ClientDashboard() {
                       </div>
                       <div className="flex items-center gap-6 text-sm text-[#a1a1aa]">
                         <span><Calendar className="w-4 h-4 inline mr-1" />{booking.date} at {booking.time}</span>
-                        <span>{booking.duration} hours - ${booking.duration * 100}</span>
+                        <span>TZS {(servicePricing[booking.service_type]?.price || 0).toLocaleString()}</span>
+                        <span className={booking.payment_percentage < 100 ? 'text-[#ef4444]' : 'text-[#00ff94]'}>
+                          {booking.payment_percentage}% paid
+                        </span>
                       </div>
                     </div>
                     <div className="flex items-center gap-4">
