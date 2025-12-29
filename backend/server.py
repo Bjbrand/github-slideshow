@@ -449,12 +449,25 @@ async def update_project_status(project_id: str, status_update: ProjectStatusUpd
     if not project:
         raise HTTPException(status_code=404, detail="Project not found")
     
+    # Calculate progress percentage based on status
+    progress_map = {
+        "pending": 0,
+        "in_progress": 50,
+        "revision_requested": 75,
+        "completed": 100
+    }
+    progress = progress_map.get(status_update.status, 0)
+    
     await db.projects.update_one(
         {"id": project_id},
-        {"$set": {"status": status_update.status, "updated_at": datetime.now(timezone.utc).isoformat()}}
+        {"$set": {
+            "status": status_update.status,
+            "progress_percentage": progress,
+            "updated_at": datetime.now(timezone.utc).isoformat()
+        }}
     )
     
-    return {"message": "Project status updated"}
+    return {"message": "Project status updated", "progress": progress}
 
 @api_router.post("/projects/{project_id}/files")
 async def upload_project_file(project_id: str, file: UploadFile = File(...), user: dict = Depends(get_current_user)):
