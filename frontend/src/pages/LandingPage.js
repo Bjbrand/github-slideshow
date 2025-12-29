@@ -76,7 +76,7 @@ export default function LandingPage() {
             <h2 className="text-4xl md:text-5xl font-bold mt-4">Studio Services</h2>
           </div>
           
-          <div className="grid md:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-3 lg:grid-cols-6 gap-6">
             <div className="bg-[#121212] border border-white/5 hover:border-[#003366]/50 p-8 rounded-xl transition-all duration-300 group" data-testid="service-recording">
               <div className="w-12 h-12 bg-[#003366]/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-[#003366]/20 transition-colors">
                 <Mic className="w-6 h-6 text-[#003366]" />
@@ -107,6 +107,22 @@ export default function LandingPage() {
               </div>
               <h3 className="text-xl font-bold mb-2">A Cappella</h3>
               <p className="text-[#a1a1aa] text-sm">Vocal isolation and enhancement for pristine a cappella tracks.</p>
+            </div>
+
+            <div className="bg-[#121212] border border-white/5 hover:border-[#003366]/50 p-8 rounded-xl transition-all duration-300 group" data-testid="service-video-recording">
+              <div className="w-12 h-12 bg-[#00cc66]/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-[#00cc66]/20 transition-colors">
+                <Music className="w-6 h-6 text-[#00cc66]" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Video Recording</h3>
+              <p className="text-[#a1a1aa] text-sm">Professional video recording for music videos and content creation.</p>
+            </div>
+
+            <div className="bg-[#121212] border border-white/5 hover:border-[#003366]/50 p-8 rounded-xl transition-all duration-300 group" data-testid="service-video-editing">
+              <div className="w-12 h-12 bg-[#9966cc]/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-[#9966cc]/20 transition-colors">
+                <Disc3 className="w-6 h-6 text-[#9966cc]" />
+              </div>
+              <h3 className="text-xl font-bold mb-2">Video Editing</h3>
+              <p className="text-[#a1a1aa] text-sm">Professional video editing and post-production services.</p>
             </div>
           </div>
         </div>
