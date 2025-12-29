@@ -194,13 +194,13 @@ export default function ProjectDetail() {
                       <span className="text-white text-sm">{file.filename}</span>
                     </div>
                     <Button
-                      onClick={() => downloadFile(file.id, file.filename)}
+                      onClick={() => previewFile(file.id)}
                       size="sm"
                       variant="ghost"
-                      className="text-[#00ff94] hover:text-[#00ff94]/80"
-                      data-testid={`download-file-${file.id}`}
+                      className="text-[#003366] hover:text-[#003366]/80"
+                      data-testid={`preview-file-${file.id}`}
                     >
-                      <Download className="w-4 h-4" />
+                      <Play className="w-4 h-4" />
                     </Button>
                   </div>
                 ))}
