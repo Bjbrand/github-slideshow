@@ -1033,6 +1033,103 @@ async def preview_file(file_id: str, user: dict = Depends(get_current_user)):
         }
     )
 
+@api_router.post("/projects/{project_id}/satisfaction")
+async def submit_satisfaction_rating(project_id: str, rating_data: SatisfactionRating, user: dict = Depends(get_current_user)):
+    """Client submits satisfaction rating for completed project"""
+    project = await db.projects.find_one({"id": project_id}, {"_id": 0})
+    if not project:
+        raise HTTPException(status_code=404, detail="Project not found")
+    
+    if project['client_id'] != user['user_id']:
+        raise HTTPException(status_code=403, detail="Access denied")
+    
+    rating_doc = {
+        "id": str(uuid.uuid4()),
+        "project_id": project_id,
+        "client_id": user['user_id'],
+        "rating": rating_data.rating,
+        "feedback": rating_data.feedback,
+        "created_at": datetime.now(timezone.utc).isoformat()
+    }
+    
+    await db.ratings.insert_one(rating_doc)
+    
+    # Update project with satisfaction status
+    await db.projects.update_one(
+        {"id": project_id},
+        {"$set": {"satisfaction_rating": rating_data.rating, "client_satisfied": True}}
+    )
+    
+    return {"message": "Satisfaction rating submitted", "can_download": True}
+
+@api_router.get("/projects/{project_id}/satisfaction")
+async def get_satisfaction_rating(project_id: str, user: dict = Depends(get_current_user)):
+    """Get satisfaction rating for a project"""
+    rating = await db.ratings.find_one({"project_id": project_id}, {"_id": 0})
+    return rating if rating else {"rating": None}
+
+@api_router.post("/contracts/signature")
+async def add_contract_signature(signature_data: ContractSignature, user: dict = Depends(get_current_user)):
+    """Add signature to contract"""
+    project = await db.projects.find_one({"id": signature_data.project_id}, {"_id": 0})
+    if not project:
+        raise HTTPException(status_code=404, detail="Project not found")
+    
+    signature_doc = {
+        "id": str(uuid.uuid4()),
+        "project_id": signature_data.project_id,
+        "signature_data": signature_data.signature_data,
+        "signed_by": signature_data.signed_by,
+        "signer_id": user['user_id'],
+        "created_at": datetime.now(timezone.utc).isoformat()
+    }
+    
+    await db.signatures.insert_one(signature_doc)
+    
+    return {"message": "Signature added successfully"}
+
+@api_router.get("/settings/contact")
+async def get_contact_info():
+    """Get public contact information"""
+    settings = await db.settings.find_one({"type": "global"}, {"_id": 0})
+    default_contact = {
+        "email": "bjbrandrecords@gmail.com",
+        "instagram": "bjbrandStudios",
+        "facebook": "bjbrand studios",
+        "phones": ["+255620825562", "+255678410397"]
+    }
+    
+    if settings and "contact_info" in settings:
+        return settings["contact_info"]
+    return default_contact
+
+@api_router.get("/settings/terms")
+async def get_terms_conditions():
+    """Get terms and conditions"""
+    settings = await db.settings.find_one({"type": "global"}, {"_id": 0})
+    default_terms = """
+# Terms and Conditions
+
+## 1. Payment Terms
+The Client agrees to pay the agreed percentage before services begin.
+
+## 2. Cancellation Policy
+Cancellations require 48 hours notice for a full refund.
+
+## 3. Intellectual Property
+The Client retains all rights to their recordings.
+
+## 4. Revisions
+Two rounds of revisions are included in services.
+
+## 5. Delivery
+Files will be delivered within the agreed project timeline.
+    """
+    
+    if settings and "terms_conditions" in settings:
+        return {"terms": settings["terms_conditions"]}
+    return {"terms": default_terms}
+
 app.include_router(api_router)
 
 app.add_middleware(
