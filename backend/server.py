@@ -13,9 +13,14 @@ import uuid
 from datetime import datetime, timezone, timedelta
 import bcrypt
 import jwt
+import random
+import string
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
 from reportlab.lib.units import inch
+from reportlab.lib.utils import ImageReader
+from reportlab.platypus import Table, TableStyle
+from reportlab.lib import colors as pdf_colors
 import io
 import shutil
 
