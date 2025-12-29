@@ -58,7 +58,7 @@ export default function Register() {
                 required
                 value={formData.name}
                 onChange={(e) => setFormData({...formData, name: e.target.value})}
-                className="bg-black/20 border-white/10 focus:border-[#d946ef]/50 focus:ring-1 focus:ring-[#d946ef]/50 rounded-lg h-12 text-white"
+                className="bg-black/20 border-white/10 focus:border-[#003366]/50 focus:ring-1 focus:ring-[#003366]/50 rounded-lg h-12 text-white"
                 placeholder="John Doe"
                 data-testid="register-name-input"
               />
@@ -72,7 +72,7 @@ export default function Register() {
                 required
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
-                className="bg-black/20 border-white/10 focus:border-[#d946ef]/50 focus:ring-1 focus:ring-[#d946ef]/50 rounded-lg h-12 text-white"
+                className="bg-black/20 border-white/10 focus:border-[#003366]/50 focus:ring-1 focus:ring-[#003366]/50 rounded-lg h-12 text-white"
                 placeholder="john@example.com"
                 data-testid="register-email-input"
               />
@@ -86,7 +86,7 @@ export default function Register() {
                 required
                 value={formData.password}
                 onChange={(e) => setFormData({...formData, password: e.target.value})}
-                className="bg-black/20 border-white/10 focus:border-[#d946ef]/50 focus:ring-1 focus:ring-[#d946ef]/50 rounded-lg h-12 text-white"
+                className="bg-black/20 border-white/10 focus:border-[#003366]/50 focus:ring-1 focus:ring-[#003366]/50 rounded-lg h-12 text-white"
                 placeholder="••••••••"
                 data-testid="register-password-input"
               />
@@ -99,7 +99,7 @@ export default function Register() {
                 type="tel"
                 value={formData.phone}
                 onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                className="bg-black/20 border-white/10 focus:border-[#d946ef]/50 focus:ring-1 focus:ring-[#d946ef]/50 rounded-lg h-12 text-white"
+                className="bg-black/20 border-white/10 focus:border-[#003366]/50 focus:ring-1 focus:ring-[#003366]/50 rounded-lg h-12 text-white"
                 placeholder="+1234567890"
                 data-testid="register-phone-input"
               />
@@ -112,7 +112,7 @@ export default function Register() {
                 type="text"
                 value={formData.company_name}
                 onChange={(e) => setFormData({...formData, company_name: e.target.value})}
-                className="bg-black/20 border-white/10 focus:border-[#d946ef]/50 focus:ring-1 focus:ring-[#d946ef]/50 rounded-lg h-12 text-white"
+                className="bg-black/20 border-white/10 focus:border-[#003366]/50 focus:ring-1 focus:ring-[#003366]/50 rounded-lg h-12 text-white"
                 placeholder="My Band"
                 data-testid="register-company-input"
               />
