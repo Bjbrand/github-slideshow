@@ -241,9 +241,27 @@ export default function BookingPage() {
             </div>
 
             <div className="bg-white/5 border border-white/10 rounded-lg p-4">
-              <div className="flex items-center justify-between">
-                <span className="text-[#a1a1aa]">Estimated Total:</span>
-                <span className="text-2xl font-bold text-white">${formData.duration * 100}</span>
+              <div className="space-y-2">
+                <div className="flex items-center justify-between">
+                  <span className="text-[#a1a1aa]">Service Price:</span>
+                  <span className="text-white font-medium">TZS {formData.service_type && getServicePrice().toLocaleString()}</span>
+                </div>
+                <div className="flex items-center justify-between">
+                  <span className="text-[#a1a1aa]">Payment ({formData.payment_percentage}%):</span>
+                  <span className="text-2xl font-bold text-white">TZS {formData.service_type && getAmountDue().toLocaleString()}</span>
+                </div>
+                {servicePricing[formData.service_type]?.discount && (
+                  <p className="text-xs text-[#00cc66] mt-2">✓ Discount available for this service</p>
+                )}
+              </div>
+            </div>
+
+            <div className="bg-[#003366]/10 border border-[#003366]/20 rounded-lg p-4">
+              <h4 className="text-sm font-bold text-white mb-2">Payment Methods:</h4>
+              <div className="space-y-1 text-xs text-[#a1a1aa]">
+                <p>• Airtel Money: +255672991100</p>
+                <p>• M-Pesa: +255766919083</p>
+                <p>• Bank: 0152618979700 (Bwanga Josiah Tayali)</p>
               </div>
             </div>
 
