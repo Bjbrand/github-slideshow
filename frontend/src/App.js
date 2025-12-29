@@ -10,6 +10,7 @@ import BookingPage from './pages/BookingPage';
 import ClientDashboard from './pages/ClientDashboard';
 import ProjectDetail from './pages/ProjectDetail';
 import AdminDashboard from './pages/AdminDashboard';
+import AdminSettings from './pages/AdminSettings';
 import FilePreview from './pages/FilePreview';
 import { Toaster } from './components/ui/sonner';
 
