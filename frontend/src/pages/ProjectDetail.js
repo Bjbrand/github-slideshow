@@ -5,7 +5,7 @@ import { AuthContext } from '../App';
 import { Button } from '../components/ui/button';
 import { Textarea } from '../components/ui/textarea';
 import { toast } from 'sonner';
-import { Disc3, Download, MessageSquare, Upload, FileText, ArrowLeft } from 'lucide-react';
+import { Disc3, Play, MessageSquare, Upload, FileText, ArrowLeft } from 'lucide-react';
 
 export default function ProjectDetail() {
   const { projectId } = useParams();
