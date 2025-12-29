@@ -156,7 +156,7 @@ export default function BookingPage() {
             </div>
 
             <div>
-              <Label htmlFor="duration" className="text-xs uppercase tracking-wider text-[#a1a1aa] mb-2 block">Duration (hours)</Label>
+              <Label htmlFor="duration" className="text-xs uppercase tracking-wider text-[#a1a1aa] mb-2 block">Session Duration (hours)</Label>
               <Input
                 id="duration"
                 type="number"
@@ -169,6 +169,22 @@ export default function BookingPage() {
                 data-testid="booking-duration-input"
               />
               <p className="text-xs text-[#52525b] mt-1">Minimum 2 hours - $100/hour</p>
+            </div>
+
+            <div>
+              <Label htmlFor="project_duration" className="text-xs uppercase tracking-wider text-[#a1a1aa] mb-2 block">Project Completion Duration (days)</Label>
+              <Input
+                id="project_duration"
+                type="number"
+                min="1"
+                max="60"
+                required
+                value={formData.project_duration_days}
+                onChange={(e) => setFormData({...formData, project_duration_days: parseInt(e.target.value)})}
+                className="bg-black/20 border-white/10 focus:border-[#d946ef]/50 h-12 text-white"
+                data-testid="booking-project-duration-input"
+              />
+              <p className="text-xs text-[#52525b] mt-1">Expected days for project completion</p>
             </div>
 
             <div>
