@@ -51,9 +51,16 @@ export default function BookingPage() {
   const discountPercentage = settings?.seasonal_campaign?.discount_percentage || 0;
 
   const getServicePrice = () => {
-    const service = servicePricing[formData.service_type];
-    if (!service) return 0;
-    return service.price;
+    const basePrice = servicePricing[formData.service_type];
+    if (!basePrice) return 0;
+    if (hasDiscount) {
+      return Math.round(basePrice * (1 - discountPercentage / 100));
+    }
+    return basePrice;
+  };
+
+  const getOriginalPrice = () => {
+    return servicePricing[formData.service_type] || 0;
   };
 
   const getAmountDue = () => {
