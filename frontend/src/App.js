@@ -95,6 +95,8 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/register" element={!user ? <Register /> : <Navigate to="/dashboard" />} />
           <Route path="/login" element={!user ? <Login /> : <Navigate to="/dashboard" />} />
+          <Route path="/forgot-password" element={!user ? <ForgotPassword /> : <Navigate to="/dashboard" />} />
+          <Route path="/terms" element={<TermsConditions />} />
           <Route path="/contract" element={user ? <ContractPage /> : <Navigate to="/login" />} />
           <Route path="/book" element={user ? <BookingPage /> : <Navigate to="/login" />} />
           <Route path="/dashboard" element={user ? (user.role === 'admin' ? <AdminDashboard /> : <ClientDashboard />) : <Navigate to="/login" />} />
