@@ -205,27 +205,7 @@ export default function ClientDashboard() {
             </div>
           ) : (
             <div className="grid md:grid-cols-2 gap-4">
-              {projects.map(project => (
-                <div
-                  key={project.id}
-                  onClick={() => navigate(`/projects/${project.id}`)}
-                  className="bg-[#121212] border border-white/5 hover:border-white/10 rounded-xl p-6 cursor-pointer transition-all"
-                  data-testid={`project-${project.id}`}
-                >
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <h3 className="text-lg font-bold text-white mb-1">{project.service_type}</h3>
-                      <p className="text-sm text-[#a1a1aa]">Deadline: {project.deadline}</p>
-                    </div>
-                    <ChevronRight className="w-5 h-5 text-[#a1a1aa]" />
-                  </div>
-                  <div className="flex items-center gap-2">
-                    <span className={`text-xs px-3 py-1 rounded-full ${getStatusColor(project.status)}`}>
-                      {project.status.replace('_', ' ').toUpperCase()}
-                    </span>
-                  </div>
-                </div>
-              ))}
+              {projects.map(project => (\n                <div\n                  key={project.id}\n                  onClick={() => navigate(`/projects/${project.id}`)}\n                  className=\"bg-[#121212] border border-white/5 hover:border-white/10 rounded-xl p-6 cursor-pointer transition-all\"\n                  data-testid={`project-${project.id}`}\n                >\n                  <div className=\"flex items-start justify-between mb-4\">\n                    <div>\n                      <h3 className=\"text-lg font-bold text-white mb-1\">{project.service_type}</h3>\n                      <p className=\"text-sm text-[#a1a1aa]\">Deadline: {new Date(project.deadline).toLocaleDateString()}</p>\n                      {project.deadline && (\n                        <p className=\"text-xs text-[#52525b] mt-1\">\n                          {Math.ceil((new Date(project.deadline) - new Date()) / (1000 * 60 * 60 * 24))} days remaining\n                        </p>\n                      )}\n                    </div>\n                    <ChevronRight className=\"w-5 h-5 text-[#a1a1aa]\" />\n                  </div>\n                  <div className=\"space-y-2\">\n                    <div className=\"flex items-center justify-between text-sm\">\n                      <span className={`text-xs px-3 py-1 rounded-full ${getStatusColor(project.status)}`}>\n                        {project.status.replace('_', ' ').toUpperCase()}\n                      </span>\n                      <span className=\"text-[#a1a1aa] text-xs\">{project.progress_percentage || 0}%</span>\n                    </div>\n                    <div className=\"w-full bg-white/5 rounded-full h-2 overflow-hidden\">\n                      <div\n                        className=\"bg-[#003366] h-full rounded-full transition-all duration-500\"\n                        style={{ width: `${project.progress_percentage || 0}%` }}\n                        data-testid={`progress-bar-${project.id}`}\n                      />\n                    </div>\n                  </div>\n                </div>\n              ))}
             </div>
           )}
         </div>
