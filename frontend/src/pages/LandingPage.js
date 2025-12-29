@@ -47,7 +47,7 @@ export default function LandingPage() {
             </div>
             <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-none">
               Create Your
-              <span className="block text-[#d946ef] mt-2">Sonic Masterpiece</span>
+              <span className="block text-[#003366] mt-2">Sonic Masterpiece</span>
             </h1>
             <p className="text-lg text-[#a1a1aa] max-w-2xl">
               Book studio sessions, manage projects, and collaborate with our engineers—all in one seamless platform.
