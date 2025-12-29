@@ -377,6 +377,7 @@ async def create_booking(booking_data: BookingCreate, user: dict = Depends(get_c
         "time": booking_data.time,
         "duration": booking_data.duration,
         "project_duration_days": booking_data.project_duration_days,
+        "payment_percentage": booking_data.payment_percentage,
         "notes": booking_data.notes,
         "payment_status": "pending",
         "invoice_id": invoice_id,
