@@ -557,6 +557,20 @@ async def download_file(file_id: str, user: dict = Depends(get_current_user)):
     if user['role'] != 'admin' and project['client_id'] != user['user_id']:
         raise HTTPException(status_code=403, detail="Access denied")
     
+    # Check if payment is 100% complete for clients
+    if user['role'] != 'admin':
+        booking = await db.bookings.find_one({"id": project['booking_id']}, {"_id": 0})
+        if booking and booking.get('payment_percentage', 0) < 100:
+            raise HTTPException(
+                status_code=403, 
+                detail="Download available only after 100% payment is completed"
+            )
+        if booking and booking.get('payment_status') != 'confirmed':
+            raise HTTPException(
+                status_code=403, 
+                detail="Download available only after payment is confirmed"
+            )
+    
     file_path = Path(file_doc['file_path'])
     if not file_path.exists():
         raise HTTPException(status_code=404, detail="File not found on disk")
