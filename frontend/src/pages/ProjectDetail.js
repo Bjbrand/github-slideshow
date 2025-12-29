@@ -34,6 +34,13 @@ export default function ProjectDetail() {
       setProject(projectRes.data);
       setFiles(filesRes.data);
       setRevisions(revisionsRes.data);
+      
+      // Fetch booking details
+      if (projectRes.data.booking_id) {
+        const bookingsRes = await axios.get(`${API}/bookings`, { headers: { Authorization: `Bearer ${token}` } });
+        const projectBooking = bookingsRes.data.find(b => b.id === projectRes.data.booking_id);
+        setBooking(projectBooking);
+      }
     } catch (error) {
       toast.error('Failed to load project');
     } finally {
