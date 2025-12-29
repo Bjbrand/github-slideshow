@@ -639,6 +639,87 @@ async def get_admin_dashboard(admin: dict = Depends(require_admin)):
         "pending_payments": pending_payments
     }
 
+@api_router.get("/admin/settings")
+async def get_settings(admin: dict = Depends(require_admin)):
+    settings = await db.settings.find_one({"type": "global"}, {"_id": 0})
+    if not settings:
+        # Return default settings
+        default_settings = {
+            "type": "global",
+            "pricing": {
+                "Recording": 50000,
+                "Mixing": 70000,
+                "Mastering": 30000,
+                "A Cappella": 40000,
+                "Video Recording": 200000,
+                "Video Editing": 200000
+            },
+            "theme": {
+                "primary_color": "#003366",
+                "secondary_color": "#0066cc",
+                "accent_color": "#004080",
+                "hero_text": "Create Your Sonic Masterpiece",
+                "hero_subtitle": "Book studio sessions, manage projects, and collaborate with our engineers—all in one seamless platform."
+            },
+            "seasonal_campaign": {
+                "active": False,
+                "name": "",
+                "discount_percentage": 0,
+                "banner_text": "",
+                "start_date": "",
+                "end_date": ""
+            }
+        }
+        await db.settings.insert_one(default_settings)
+        return default_settings
+    return settings
+
+@api_router.put("/admin/settings")
+async def update_settings(settings_update: SettingsUpdate, admin: dict = Depends(require_admin)):
+    update_data = {}
+    if settings_update.pricing:
+        update_data["pricing"] = settings_update.pricing
+    if settings_update.theme:
+        update_data["theme"] = settings_update.theme
+    if settings_update.seasonal_campaign:
+        update_data["seasonal_campaign"] = settings_update.seasonal_campaign
+    
+    if update_data:
+        await db.settings.update_one(
+            {"type": "global"},
+            {"$set": update_data},
+            upsert=True
+        )
+    
+    return {"message": "Settings updated successfully"}
+
+@api_router.get("/settings/public")
+async def get_public_settings():
+    """Get public settings for frontend (pricing, theme, campaigns)"""
+    settings = await db.settings.find_one({"type": "global"}, {"_id": 0})
+    if not settings:
+        return {
+            "pricing": {
+                "Recording": 50000,
+                "Mixing": 70000,
+                "Mastering": 30000,
+                "A Cappella": 40000,
+                "Video Recording": 200000,
+                "Video Editing": 200000
+            },
+            "theme": {
+                "primary_color": "#003366",
+                "secondary_color": "#0066cc",
+                "accent_color": "#004080",
+                "hero_text": "Create Your Sonic Masterpiece",
+                "hero_subtitle": "Book studio sessions, manage projects, and collaborate with our engineers—all in one seamless platform."
+            },
+            "seasonal_campaign": {
+                "active": False
+            }
+        }
+    return settings
+
 @api_router.get("/admin/clients")
 async def get_all_clients(admin: dict = Depends(require_admin)):
     clients = await db.users.find({"role": "client"}, {"_id": 0, "password": 0}).to_list(1000)
