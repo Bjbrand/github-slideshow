@@ -447,6 +447,73 @@ async def get_me(user: dict = Depends(get_current_user)):
         raise HTTPException(status_code=404, detail="User not found")
     return User(**{k: v for k, v in user_doc.items() if k != 'password'})
 
+@api_router.post("/auth/forgot-password")
+async def forgot_password(request: ForgotPasswordRequest):
+    """Send OTP for password reset"""
+    user = await db.users.find_one({"email": request.email}, {"_id": 0})
+    if not user:
+        # Don't reveal if email exists for security
+        return {"message": "If email exists, OTP has been sent"}
+    
+    otp = generate_otp()
+    await send_otp_email(request.email, otp, "password_reset")
+    
+    return {"message": "OTP sent to email", "otp": otp}  # Remove otp in production
+
+@api_router.post("/auth/verify-otp")
+async def verify_otp_endpoint(request: VerifyOTPRequest):
+    """Verify OTP"""
+    is_valid = await verify_otp(request.email, request.otp, "password_reset")
+    if not is_valid:
+        raise HTTPException(status_code=400, detail="Invalid or expired OTP")
+    return {"message": "OTP verified successfully"}
+
+@api_router.post("/auth/reset-password")
+async def reset_password(request: ResetPasswordRequest):
+    """Reset password using OTP"""
+    # Verify OTP first
+    is_valid = await verify_otp(request.email, request.otp, "password_reset")
+    if not is_valid:
+        raise HTTPException(status_code=400, detail="Invalid or expired OTP")
+    
+    # Update password
+    hashed = hash_password(request.new_password)
+    await db.users.update_one(
+        {"email": request.email},
+        {"$set": {"password": hashed}}
+    )
+    
+    return {"message": "Password reset successfully"}
+
+@api_router.post("/auth/send-login-otp")
+async def send_login_otp(request: ForgotPasswordRequest):
+    """Send OTP for login authentication"""
+    user = await db.users.find_one({"email": request.email}, {"_id": 0})
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    otp = generate_otp()
+    await send_otp_email(request.email, otp, "login")
+    
+    return {"message": "OTP sent to email", "otp": otp}  # Remove otp in production
+
+@api_router.post("/auth/login-with-otp")
+async def login_with_otp(request: VerifyOTPRequest):
+    """Login using OTP"""
+    user = await db.users.find_one({"email": request.email}, {"_id": 0})
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+    
+    is_valid = await verify_otp(request.email, request.otp, "login")
+    if not is_valid:
+        raise HTTPException(status_code=400, detail="Invalid or expired OTP")
+    
+    token = create_token(user['id'], user['email'], user['role'])
+    return {
+        "user": User(**{k: v for k, v in user.items() if k != 'password'}),
+        "token": token
+    }
+
 @api_router.get("/contract/pdf")
 async def get_contract_pdf():
     pdf_buffer = generate_contract_pdf()
