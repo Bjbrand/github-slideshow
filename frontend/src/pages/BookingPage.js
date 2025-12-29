@@ -114,6 +114,8 @@ export default function BookingPage() {
                   <SelectItem value="Mixing" data-testid="service-mixing">Mixing</SelectItem>
                   <SelectItem value="Mastering" data-testid="service-mastering">Mastering</SelectItem>
                   <SelectItem value="A Cappella" data-testid="service-acappella">A Cappella</SelectItem>
+                  <SelectItem value="Video Recording" data-testid="service-video-recording">Video Recording</SelectItem>
+                  <SelectItem value="Video Editing" data-testid="service-video-editing">Video Editing</SelectItem>
                 </SelectContent>
               </Select>
             </div>
