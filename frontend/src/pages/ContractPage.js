@@ -96,8 +96,8 @@ export default function ContractPage() {
 
         <div className="bg-[#121212] border border-white/5 rounded-xl p-8">
           <div className="flex items-center gap-4 mb-6">
-            <div className="w-12 h-12 bg-[#d946ef]/10 rounded-lg flex items-center justify-center">
-              <FileText className="w-6 h-6 text-[#d946ef]" />
+            <div className="w-12 h-12 bg-[#003366]/10 rounded-lg flex items-center justify-center">
+              <FileText className="w-6 h-6 text-[#003366]" />
             </div>
             <div>
               <h1 className="text-2xl font-bold text-white">Recording Services Agreement</h1>
