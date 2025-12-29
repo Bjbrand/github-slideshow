@@ -19,7 +19,7 @@ export default function LandingPage() {
               </Button>
             </Link>
             <Link to="/register">
-              <Button className="bg-[#d946ef] hover:bg-[#c026d3] text-white rounded-full px-6 glow-primary" data-testid="nav-register-btn">
+              <Button className="bg-[#003366] hover:bg-[#004080] text-white rounded-full px-6 glow-primary" data-testid="nav-register-btn">
                 Get Started
               </Button>
             </Link>
