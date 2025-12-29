@@ -5,7 +5,7 @@ import { AuthContext } from '../App';
 import { Button } from '../components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '../components/ui/select';
 import { toast } from 'sonner';
-import { Disc3, Users, Music, DollarSign, Calendar, CheckCircle2 } from 'lucide-react';
+import { Disc3, Users, Music, DollarSign, Calendar, CheckCircle2, Settings } from 'lucide-react';
 
 export default function AdminDashboard() {
   const { user, token, API, logout } = useContext(AuthContext);
