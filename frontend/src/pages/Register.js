@@ -121,7 +121,7 @@ export default function Register() {
             <Button
               type="submit"
               disabled={loading}
-              className="w-full bg-[#d946ef] hover:bg-[#c026d3] text-white rounded-full h-12 glow-primary"
+              className="w-full bg-[#003366] hover:bg-[#004080] text-white rounded-full h-12 glow-primary"
               data-testid="register-submit-btn"
             >
               {loading ? 'Creating Account...' : 'Create Account'}
