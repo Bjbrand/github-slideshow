@@ -83,24 +83,8 @@ export default function ProjectDetail() {
     }
   };
 
-  const downloadFile = async (fileId, filename) => {
-    try {
-      const response = await axios.get(`${API}/files/${fileId}/download`, {
-        headers: { Authorization: `Bearer ${token}` },
-        responseType: 'blob'
-      });
-      
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', filename);
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-      toast.success('Download started!');
-    } catch (error) {
-      toast.error('Failed to download file');
-    }
+  const previewFile = (fileId) => {
+    navigate(`/preview/${fileId}`);
   };
 
   const getStatusColor = (status) => {
