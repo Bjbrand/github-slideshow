@@ -77,9 +77,9 @@ export default function LandingPage() {
           </div>
           
           <div className="grid md:grid-cols-4 gap-6">
-            <div className="bg-[#121212] border border-white/5 hover:border-[#d946ef]/50 p-8 rounded-xl transition-all duration-300 group" data-testid="service-recording">
-              <div className="w-12 h-12 bg-[#d946ef]/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-[#d946ef]/20 transition-colors">
-                <Mic className="w-6 h-6 text-[#d946ef]" />
+            <div className="bg-[#121212] border border-white/5 hover:border-[#003366]/50 p-8 rounded-xl transition-all duration-300 group" data-testid="service-recording">
+              <div className="w-12 h-12 bg-[#003366]/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-[#003366]/20 transition-colors">
+                <Mic className="w-6 h-6 text-[#003366]" />
               </div>
               <h3 className="text-xl font-bold mb-2">Recording</h3>
               <p className="text-[#a1a1aa] text-sm">Professional multi-track recording with state-of-the-art equipment.</p>
