@@ -95,7 +95,7 @@ export default function ClientDashboard() {
             <span className="text-[#a1a1aa]">Welcome, {user?.name}</span>
             <Button
               onClick={() => navigate('/book')}
-              className="bg-[#d946ef] hover:bg-[#c026d3] text-white rounded-full px-6"
+              className="bg-[#003366] hover:bg-[#004080] text-white rounded-full px-6"
               data-testid="dashboard-book-session-btn"
             >
               Book Session
@@ -198,7 +198,7 @@ export default function ClientDashboard() {
               <p className="text-[#a1a1aa] mb-4">No projects yet. Book your first session to get started!</p>
               <Button
                 onClick={() => navigate('/book')}
-                className="bg-[#d946ef] hover:bg-[#c026d3] text-white rounded-full px-6"
+                className="bg-[#003366] hover:bg-[#004080] text-white rounded-full px-6"
               >
                 Book Now
               </Button>
