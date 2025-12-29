@@ -87,8 +87,8 @@ export default function ContractPage() {
     <div className="min-h-screen bg-[#0a0a0a] p-6">
       <div className="max-w-4xl mx-auto">
         <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-2">
-            <Disc3 className="w-8 h-8 text-[#d946ef]" />
+          <div className="flex items-center gap-3">
+            <img src="/logo-white.png" alt="BjBrands Studios Logo" className="h-10 w-10 object-contain" />
             <span className="text-2xl font-bold text-white">BjBrands Studios</span>
           </div>
           <span className="text-[#a1a1aa]">Welcome, {user?.name}</span>
