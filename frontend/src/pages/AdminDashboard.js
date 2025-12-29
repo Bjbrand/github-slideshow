@@ -131,6 +131,44 @@ export default function AdminDashboard() {
           </div>
         </div>
 
+        {/* Reminders Section */}
+        {(paymentReminders.length > 0 || deadlineReminders.length > 0) && (
+          <div className="mb-8">
+            <h2 className="text-2xl font-bold text-white mb-4">Reminders</h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              {paymentReminders.length > 0 && (
+                <div className="bg-[#121212] border border-[#ef4444]/20 rounded-xl p-6">
+                  <h3 className="text-lg font-bold text-[#ef4444] mb-4">Payment Reminders ({paymentReminders.length})</h3>
+                  <div className="space-y-3">
+                    {paymentReminders.slice(0, 5).map(booking => (
+                      <div key={booking.id} className="bg-white/5 border border-white/10 rounded-lg p-3">
+                        <p className="text-white text-sm font-medium">{booking.client_name}</p>
+                        <p className="text-[#a1a1aa] text-xs">{booking.service_type} - ${booking.duration * 100}</p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+              
+              {deadlineReminders.length > 0 && (
+                <div className="bg-[#121212] border border-[#d946ef]/20 rounded-xl p-6">
+                  <h3 className="text-lg font-bold text-[#d946ef] mb-4">Deadline Reminders ({deadlineReminders.length})</h3>
+                  <div className="space-y-3">
+                    {deadlineReminders.slice(0, 5).map(project => (
+                      <div key={project.id} className="bg-white/5 border border-white/10 rounded-lg p-3">
+                        <p className="text-white text-sm font-medium">{project.client_name}</p>
+                        <p className="text-[#a1a1aa] text-xs">
+                          {project.service_type} - Due: {new Date(project.deadline).toLocaleDateString()}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+        )}
+
         {/* Pending Payment Approvals */}
         {bookings.filter(b => b.payment_status === 'verification_pending').length > 0 && (
           <div className="mb-8">
