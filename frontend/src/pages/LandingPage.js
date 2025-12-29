@@ -177,9 +177,39 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/5 py-8 px-6">
-        <div className="max-w-7xl mx-auto text-center text-[#a1a1aa] text-sm">
-          <p>© 2025 BjBrands Studios. All rights reserved.</p>
+      <footer className="border-t border-white/5 py-12 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8 mb-8">
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <img src="/logo-white.png" alt="BjBrands Studios" className="h-8 w-8 object-contain" />
+                <span className="text-xl font-bold text-white">BjBrands Studios</span>
+              </div>
+              <p className="text-[#a1a1aa] text-sm">Professional recording studio services in Tanzania</p>
+            </div>
+            
+            <div>
+              <h4 className="text-white font-bold mb-4">Contact Us</h4>
+              <div className="space-y-2 text-[#a1a1aa] text-sm">
+                <p>📧 bjbrandrecords@gmail.com</p>
+                <p>📱 +255620825562</p>
+                <p>📱 +255678410397</p>
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="text-white font-bold mb-4">Follow Us</h4>
+              <div className="space-y-2 text-[#a1a1aa] text-sm">
+                <p>📷 Instagram: @bjbrandStudios</p>
+                <p>📘 Facebook: bjbrand studios</p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="border-t border-white/5 pt-6 flex flex-col md:flex-row items-center justify-between gap-4">
+            <p className="text-[#a1a1aa] text-sm text-center md:text-left">© 2025 BjBrands Studios. All rights reserved.</p>
+            <Link to="/terms" className="text-[#a1a1aa] hover:text-white text-sm">Terms & Conditions</Link>
+          </div>
         </div>
       </footer>
     </div>
