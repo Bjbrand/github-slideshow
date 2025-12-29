@@ -86,8 +86,8 @@ export default function AdminDashboard() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
-          <div className="flex items-center gap-2">
-            <Disc3 className="w-8 h-8 text-[#d946ef]" />
+          <div className="flex items-center gap-3">
+            <img src="/logo-white.png" alt="BjBrands Studios Logo" className="h-10 w-10 object-contain" />
             <span className="text-2xl font-bold text-white">BjBrands Studios</span>
             <span className="text-sm text-[#a1a1aa] ml-4">Admin Dashboard</span>
           </div>
