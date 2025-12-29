@@ -338,9 +338,11 @@ async def create_booking(booking_data: BookingCreate, user: dict = Depends(get_c
         "date": booking_data.date,
         "time": booking_data.time,
         "duration": booking_data.duration,
+        "project_duration_days": booking_data.project_duration_days,
         "notes": booking_data.notes,
         "payment_status": "pending",
         "invoice_id": invoice_id,
+        "payment_reminder_sent": False,
         "created_at": datetime.now(timezone.utc).isoformat()
     }
     
