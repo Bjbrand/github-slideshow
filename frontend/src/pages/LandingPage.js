@@ -8,8 +8,8 @@ export default function LandingPage() {
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-[#0a0a0a]/80 backdrop-blur-md border-b border-white/5">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            <Disc3 className="w-8 h-8 text-[#d946ef]" />
+          <div className="flex items-center gap-3">
+            <img src="/logo-white.png" alt="BjBrands Studios Logo" className="h-10 w-10 object-contain" />
             <span className="text-2xl font-bold tracking-tight">BjBrands Studios</span>
           </div>
           <div className="flex items-center gap-4">
