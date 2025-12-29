@@ -586,6 +586,68 @@ async def get_all_clients(admin: dict = Depends(require_admin)):
     clients = await db.users.find({"role": "client"}, {"_id": 0, "password": 0}).to_list(1000)
     return clients
 
+@api_router.get("/admin/payment-reminders")
+async def get_payment_reminders(admin: dict = Depends(require_admin)):
+    # Get bookings with pending or verification_pending payment older than 2 days
+    two_days_ago = (datetime.now(timezone.utc) - timedelta(days=2)).isoformat()
+    bookings = await db.bookings.find({
+        "payment_status": {"$in": ["pending", "verification_pending"]},
+        "created_at": {"$lt": two_days_ago},
+        "payment_reminder_sent": False
+    }, {"_id": 0}).to_list(1000)
+    return bookings
+
+@api_router.get("/admin/deadline-reminders")
+async def get_deadline_reminders(admin: dict = Depends(require_admin)):
+    # Get projects approaching deadline (within 2 days) and not completed
+    two_days_from_now = (datetime.now(timezone.utc) + timedelta(days=2)).isoformat()
+    projects = await db.projects.find({
+        "status": {"$ne": "completed"},
+        "deadline": {"$lt": two_days_from_now},
+        "deadline_reminder_sent": False
+    }, {"_id": 0}).to_list(1000)
+    return projects
+
+@api_router.post("/admin/send-payment-reminder/{booking_id}")
+async def send_payment_reminder(booking_id: str, admin: dict = Depends(require_admin)):
+    await db.bookings.update_one(
+        {"id": booking_id},
+        {"$set": {"payment_reminder_sent": True}}
+    )
+    return {"message": "Payment reminder marked as sent"}
+
+@api_router.post("/admin/send-deadline-reminder/{project_id}")
+async def send_deadline_reminder(project_id: str, admin: dict = Depends(require_admin)):
+    await db.projects.update_one(
+        {"id": project_id},
+        {"$set": {"deadline_reminder_sent": True}}
+    )
+    return {"message": "Deadline reminder marked as sent"}
+
+@api_router.get("/files/{file_id}/preview")
+async def preview_file(file_id: str, user: dict = Depends(get_current_user)):
+    file_doc = await db.files.find_one({"id": file_id}, {"_id": 0})
+    if not file_doc:
+        raise HTTPException(status_code=404, detail="File not found")
+    
+    project = await db.projects.find_one({"id": file_doc['project_id']}, {"_id": 0})
+    if user['role'] != 'admin' and project['client_id'] != user['user_id']:
+        raise HTTPException(status_code=403, detail="Access denied")
+    
+    file_path = Path(file_doc['file_path'])
+    if not file_path.exists():
+        raise HTTPException(status_code=404, detail="File not found on disk")
+    
+    # Return file for streaming (preview only)
+    return FileResponse(
+        file_path,
+        media_type="application/octet-stream",
+        headers={
+            "Content-Disposition": f"inline; filename={file_doc['filename']}",
+            "X-Content-Type-Options": "nosniff"
+        }
+    )
+
 app.include_router(api_router)
 
 app.add_middleware(
