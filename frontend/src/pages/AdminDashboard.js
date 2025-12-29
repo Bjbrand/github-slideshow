@@ -14,6 +14,8 @@ export default function AdminDashboard() {
   const [clients, setClients] = useState([]);
   const [projects, setProjects] = useState([]);
   const [bookings, setBookings] = useState([]);
+  const [paymentReminders, setPaymentReminders] = useState([]);
+  const [deadlineReminders, setDeadlineReminders] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
