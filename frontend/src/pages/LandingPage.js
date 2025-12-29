@@ -101,7 +101,7 @@ export default function LandingPage() {
               <p className="text-[#a1a1aa] text-sm">Final polish to make your music ready for distribution.</p>
             </div>
 
-            <div className="bg-[#121212] border border-white/5 hover:border-[#d946ef]/50 p-8 rounded-xl transition-all duration-300 group" data-testid="service-acappella">
+            <div className="bg-[#121212] border border-white/5 hover:border-[#003366]/50 p-8 rounded-xl transition-all duration-300 group" data-testid="service-acappella">
               <div className="w-12 h-12 bg-[#ef4444]/10 rounded-lg flex items-center justify-center mb-4 group-hover:bg-[#ef4444]/20 transition-colors">
                 <Disc3 className="w-6 h-6 text-[#ef4444]" />
               </div>
