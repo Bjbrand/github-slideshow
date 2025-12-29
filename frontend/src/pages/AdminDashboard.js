@@ -97,14 +97,25 @@ export default function AdminDashboard() {
             <span className="text-2xl font-bold text-white">BjBrands Studios</span>
             <span className="text-sm text-[#a1a1aa] ml-4">Admin Dashboard</span>
           </div>
-          <Button
-            onClick={logout}
-            variant="ghost"
-            className="text-white/70 hover:text-white"
-            data-testid="admin-logout-btn"
-          >
-            Logout
-          </Button>
+          <div className="flex items-center gap-3">
+            <Button
+              onClick={() => navigate('/admin/settings')}
+              variant="outline"
+              className="bg-white/5 border-white/10 hover:bg-white/10 text-white"
+              data-testid="admin-settings-btn"
+            >
+              <Settings className="w-4 h-4 mr-2" />
+              Settings
+            </Button>
+            <Button
+              onClick={logout}
+              variant="ghost"
+              className="text-white/70 hover:text-white"
+              data-testid="admin-logout-btn"
+            >
+              Logout
+            </Button>
+          </div>
         </div>
 
         {/* Stats */}
