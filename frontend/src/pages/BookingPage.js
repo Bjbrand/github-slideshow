@@ -29,8 +29,8 @@ export default function BookingPage() {
     "Mixing": { price: 70000, discount: false },
     "Mastering": { price: 30000, discount: false },
     "A Cappella": { price: 40000, discount: false },
-    "Video Recording": { price: 150000, discount: true },
-    "Video Editing": { price: 100000, discount: true }
+    "Video Recording": { price: 200000, discount: false },
+    "Video Editing": { price: 200000, discount: false }
   };
 
   const getServicePrice = () => {
