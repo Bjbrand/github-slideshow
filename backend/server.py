@@ -132,6 +132,9 @@ class SettingsUpdate(BaseModel):
     pricing: Optional[dict] = None
     theme: Optional[dict] = None
     seasonal_campaign: Optional[dict] = None
+    contact_info: Optional[dict] = None
+    terms_conditions: Optional[str] = None
+    contract_template: Optional[str] = None
 
 class RevisionCreate(BaseModel):
     project_id: str
